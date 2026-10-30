@@ -1,0 +1,32 @@
+backend:
+  name: git-gateway
+  branch: main
+locale: ar
+media_folder: images/uploads
+public_folder: /images/uploads
+collections:
+  - name: shop
+    label: المتجر
+    files:
+      - name: products
+        label: المنتجات
+        file: products.json
+        fields:
+          - label: المنتجات
+            name: products
+            widget: list
+            label_singular: منتج
+            summary: "{{fields.n}} - {{fields.p}} ج.م"
+            fields:
+              - {label: الاسم, name: n, widget: string}
+              - {label: القسم, name: c, widget: string, hint: "اكتبي القسم بنفس الكتابة كل مرة (مثال: بيجامات)"}
+              - {label: السعر بالجنيه, name: p, widget: number, value_type: int, min: 0}
+              - {label: صورة المنتج, name: img, widget: image, required: false}
+              - {label: إيموجي (يظهر لو مفيش صورة), name: e, widget: string, required: false, default: "🌸"}
+              - {label: غير متاح (نفدت الكمية), name: off, widget: boolean, required: false, default: false}
+      - name: settings
+        label: إعدادات المتجر
+        file: settings.json
+        fields:
+          - {label: رقم الواتساب (بصيغة دولية بدون + مثال 201001234567), name: wa, widget: string}
+          - {label: حساب إنستجرام (بدون @), name: ig, widget: string}
